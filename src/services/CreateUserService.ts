@@ -1,6 +1,8 @@
 import { getCustomRepository } from "typeorm";
 import { UsersRepository } from "../repositories/UsersRepository";
+import { classToPlain } from "class-transformer"
 import { hash } from "bcryptjs";
+import validator from "validator";
 
 
 interface IUserRequest {
@@ -14,8 +16,12 @@ class CreateUserService {
     async execute({ name, email, admin = false, password }: IUserRequest) {
         const usersRepository = getCustomRepository(UsersRepository);
 
-        if (!email) {
+        if (!email || !validator.isEmail(email)) {
             throw new Error("Incorrect email");
+        }
+
+        if (!validator.isStrongPassword(password)) {
+            throw new Error("Password not strong enough")
         }
 
         const passwordHash = await hash(password, 8);
@@ -37,7 +43,7 @@ class CreateUserService {
 
         await usersRepository.save(user);
 
-        return user;
+        return classToPlain(user);
     }
 }
 
