@@ -7,8 +7,8 @@ Sample project developed during [Rocketseat's](https://rocketseat.com.br/) NLW w
 ## Running it
 
 ```shell
-yarn dev
 yarn typeorm migration:run
+yarn dev
 ```
 
 ## Endpoints
