@@ -2,7 +2,7 @@
 
 API that allows users to send compliments to other users.
 
-Sample project developed during Rocketseat's NLW with Nodejs.
+Sample project developed during [Rocketseat's](https://rocketseat.com.br/) NLW with Nodejs.
 
 ## Running it
 
