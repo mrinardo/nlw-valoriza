@@ -9,6 +9,8 @@ import { ListComplimentsSentByUserController } from "./controllers/ListComplimen
 import { ListComplimentsReceivedByUserController } from "./controllers/ListComplimentsReceivedByUserController";
 import { ListTagsController } from "./controllers/ListTagsController";
 import { ListUsersController } from "./controllers/ListUsersController";
+import { ForgotPasswordController } from "./controllers/ForgotPasswordController";
+import { ResetPasswordController } from "./controllers/ResetPasswordController";
 
 const router = Router();
 
@@ -20,16 +22,21 @@ const listComplimentsSentByUserController = new ListComplimentsSentByUserControl
 const listComplimentsReceivedByUserController = new ListComplimentsReceivedByUserController();
 const listTagsController = new ListTagsController();
 const listUsersController = new ListUsersController();
+const forgotPasswordController = new ForgotPasswordController();
+const resetPasswordController = new ResetPasswordController();
 
 router.post("/users", createUserController.handle);
 // router.use(ensureAdmin); -> habilita o middleware a parti daqui.
 router.post("/tags", ensureAuthenticated, ensureAdmin, createTagController.handle);
 router.post("/login", authenticateUserController.handle);
 router.post("/compliments", ensureAuthenticated, createComplimentController.handle);
+router.post("/forgot_password", forgotPasswordController.handle)
+router.post("/reset_password/:resetToken", resetPasswordController.handle)
 
 router.get("/users/compliments/sent", ensureAuthenticated, listComplimentsSentByUserController.handle)
 router.get("/users/compliments/received", ensureAuthenticated, listComplimentsReceivedByUserController.handle)
 router.get("/tags", ensureAuthenticated, listTagsController.handle)
 router.get("/users", ensureAuthenticated, listUsersController.handle)
+
 
 export { router };

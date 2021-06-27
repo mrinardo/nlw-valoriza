@@ -26,6 +26,18 @@ class User {
     @UpdateDateColumn()
     updated_at: Date;
 
+    @Exclude()
+    @Column()
+    reset_password_token: string;
+
+    @Exclude()
+    @Column()
+    reset_password_expires_at: Date;
+
+    @Exclude()
+    @Column()
+    reset_password_token_used: boolean;
+
     constructor() {
         if (!this.id) {
             this.id = uuid();
