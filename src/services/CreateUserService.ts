@@ -38,7 +38,8 @@ class CreateUserService {
             name,
             email,
             admin,
-            password: passwordHash
+            password: passwordHash,
+            reset_password_token_used: false
         });
 
         await usersRepository.save(user);

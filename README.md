@@ -8,6 +8,7 @@ Sample project developed during Rocketseat's NLW with Nodejs.
 
 ```shell
 yarn dev
+yarn typeorm migration:run
 ```
 
 ## Endpoints
@@ -26,7 +27,8 @@ User data must be passed in HTTP body.
 {
 	"name":"Mauricio",
 	"email": "mauricio@server.com",
-	"password": "9$30a5Aá!"
+	"password": "9$30a5Aá!",
+	"admin":true
 }
 ```
 ***
